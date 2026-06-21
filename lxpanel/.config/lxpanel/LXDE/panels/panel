@@ -1,0 +1,96 @@
+Global {
+  edge=bottom
+  align=left
+  margin=0
+  widthtype=percent
+  width=100
+  height=22
+  transparent=0
+  tintcolor=#2f343f
+  alpha=255
+  setdocktype=1
+  setpartialstrut=1
+  usefontcolor=1
+  fontcolor=#ffffff
+  background=2
+}
+Plugin {
+  type=menu
+  Config {
+    image=/usr/share/lxde/images/lxde-icon.png
+    system {
+    }
+    separator {
+    }
+    item {
+      command=run
+    }
+    separator {
+    }
+    item {
+      image=gnome-logout
+      command=logout
+    }
+  }
+}
+Plugin {
+  type=launchbar
+  Config {
+    Button {
+      id=lxde-x-www-browser.desktop
+    }
+    Button {
+      id=pcmanfm.desktop
+    }
+    Button {
+      id=lxterminal.desktop
+    }
+  }
+}
+Plugin {
+  type=taskbar
+  expand=1
+  Config {
+    tooltips=1
+    IconsOnly=0
+    AcceptSkipPager=1
+    ShowIconified=1
+    ShowMapped=1
+    ShowAllDesks=0
+    ShowSquareBrackets=1
+    UseMouseWheel=1
+    UseUrgencyHint=1
+    FlatButton=0
+    MaxTaskWidth=250
+    spacing=1
+  }
+}
+Plugin {
+  type=volume
+  Config {
+    VolumeMuteKey=XF86AudioMute
+    VolumeDownKey=XF86AudioLowerVolume
+    VolumeUpKey=XF86AudioRaiseVolume
+  }
+}
+Plugin {
+  type=tray
+  Config {
+  }
+}
+Plugin {
+  type=xkb
+  Config {
+    ResetByKey=1
+  }
+}
+Plugin {
+  type=dclock
+  Config {
+    ClockFmt=%I:%M %p
+    TooltipFmt=%A %x
+    BoldFont=0
+    IconOnly=0
+    CenterText=0
+  }
+}

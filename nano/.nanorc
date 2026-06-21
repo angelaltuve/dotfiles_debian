@@ -1,0 +1,27 @@
+set linenumbers autoindent
+set tabsize 4 tabstospaces
+set trimblanks finalnewline
+set nowrap emptyline nohelp
+set locking historylog positionlog
+set mouse casesensitive regexp backwards smarthome
+set minibar incremental multibuffer
+set backup backupdir ~/.cache/nano/backups
+set speller "aspell -x -c"
+
+" Colors
+set titlecolor bold,white,blue
+set statuscolor bold,white,green
+set keycolor bold,white,magenta
+set functioncolor bold,white,cyan
+set numbercolor cyan
+set selectedcolor lightwhite,magenta
+set stripecolor ,black
+set scrollbar
+
+" Syntax highlighting
+include /usr/share/nano/*.nanorc
+
+" Key bindings
+bind ^E redo main
+bind M-8 spell main
+bind ^Q exit main
