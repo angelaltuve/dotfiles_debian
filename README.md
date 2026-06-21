@@ -11,8 +11,8 @@ Configuración de dotfiles y escritorio LXDE para Debian, gestionada con GNU Sto
 ## Inicio rápido
 
 ```bash
-git clone https://github.com/angelaltuve/dotfiles_debian.git dotfiles
-cd dotfiles
+git clone https://github.com/angelaltuve/dotfiles_debian.git .dotfiles
+cd .dotfiles
 ```
 
 ### 1. Desplegar configuraciones con Stow
