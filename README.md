@@ -2,51 +2,45 @@
 
 Configuración de dotfiles y escritorio LXDE para Debian, gestionada con GNU Stow.
 
+> [!IMPORTANT]
+> Si ya tienes configuraciones existentes, **Stow fallará por conflicto**. Respáldalas de una vez:
+>
+> ```bash
+> for p in .bashrc .bash_aliases .profile .vimrc .nanorc .config/tmux .config/gtk-3.0 .config/openbox .config/pcmanfm .config/lxpanel .config/lxsession .config/lxsession-default-apps .config/lxterminal .config/Mousepad .config/libfm .config/user-dirs.dirs .config/user-dirs.locale .local/share/fonts/JetBrainsMonoNerd; do [ -e "$HOME/$p" ] && mv "$HOME/$p" "$HOME/${p}.bak"; done
+> ```
+
 ## Requisitos previos
 
 - Debian 12+ (o derivada)
-- `stow` — `sudo apt install -y stow`
-- `git`
-
-## Inicio rápido
 
 ```bash
-git clone https://github.com/angelaltuve/dotfiles_debian.git .dotfiles
-cd .dotfiles
+sudo apt update && sudo apt install -y git wget stow
 ```
 
 ### 1. Desplegar configuraciones con Stow
 
-Stow crea enlaces simbólicos desde el repo hacia tu `$HOME`. Cada programa tiene su propio package.
-
 ```bash
-# Individualmente:
-stow -t ~ bash         # .bashrc, .bash_aliases, .profile
-stow -t ~ vim          # .vimrc
-stow -t ~ nano         # .nanorc
-stow -t ~ tmux         # ~/.config/tmux/tmux.conf
-stow -t ~ gtk          # ~/.config/gtk-3.0/
-stow -t ~ openbox      # ~/.config/openbox/
-stow -t ~ pcmanfm      # ~/.config/pcmanfm/
-stow -t ~ lxpanel      # ~/.config/lxpanel/
-stow -t ~ lxsession    # ~/.config/lxsession/ + lxsession-default-apps/
-stow -t ~ lxterminal   # ~/.config/lxterminal/
-stow -t ~ mousepad     # ~/.config/Mousepad/
-stow -t ~ libfm        # ~/.config/libfm/
-stow -t ~ user-dirs    # ~/.config/user-dirs.dirs + user-dirs.locale
-stow -t ~ fonts        # ~/.local/share/fonts/JetBrainsMonoNerd
-
-# Todo de una vez:
+git clone https://github.com/angelaltuve/dotfiles_debian.git ~/.dotfiles
+cd ~/.dotfiles
 stow -t ~ */
-
-# Deshacer:
-stow -D -t ~ openbox
 ```
 
-Después de stowear las fuentes, refrescar la caché:
+Después de stowear, refrescar la caché de fuentes:
 
 ```bash
 fc-cache -fv
+```
+
+Para deshacer un package específico:
+
+```bash
+stow -D -t ~ openbox
+```
+
+Para deshacer todo:
+
+```bash
+stow -D -t ~ */
 ```
 
 ### 2. Instalar paquetes
@@ -55,6 +49,25 @@ fc-cache -fv
 sudo apt update && sudo apt upgrade -y
 xargs sudo apt-get install -y < apt.txt
 ```
+
+Paquetes clave por dotfile:
+
+| Dotfile | Paquete apt |
+|---------|-------------|
+| `bash/` | `bash` |
+| `vim/` | `vim` |
+| `nano/` | `nano` |
+| `tmux/` | `tmux` |
+| `openbox/` | `openbox`, `obconf` |
+| `pcmanfm/` | `pcmanfm` |
+| `lxpanel/` | `lxpanel` |
+| `lxsession/` | `lxsession`, `lxsession-default-apps` |
+| `lxterminal/` | `lxterminal` |
+| `mousepad/` | `mousepad` |
+| `libfm/` | `libfm4t64` |
+| `gtk/` | `lxappearance` |
+| `fonts/` | `fontconfig` |
+| `user-dirs/` | `xdg-user-dirs` |
 
 > **Nota:** `fonts/` contiene JetBrainsMono Nerd Font (~63 archivos `.ttf`). Si no los necesitas, simplemente omite `stow -t ~ fonts`.
 
